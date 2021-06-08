@@ -31,10 +31,16 @@
 	        	<div class="card card-primary">
 	        	  <div class="card-header">
 	        	    <h3 class="card-title">Title</h3>
-	        	  </div>
+	        	  </div><br>
+	        	  @if(count($errors)>0)
+	        	  @foreach ($errors->all() as $error):
+	        	  	<p class="alert alert-danger">{{$error}}</p>
+	        	  @endforeach
+	        	  @endif
 	        	  <!-- /.card-header -->
 	        	  <!-- form start -->
-	        	  <form>
+	        	  <form action="{{route('category.store')}}" method="post">
+	        	  	{{csrf_field()}}
 	        	    <div class="card-body">
 
 	        	    	<div class="col-lg">
@@ -83,20 +89,20 @@
 
 
 	  <!-- jQuery -->
-	  <script src="../../plugins/jquery/jquery.min.js"></script>
+	  <script src="../../admin/plugins/jquery/jquery.min.js"></script>
 	  <!-- Bootstrap 4 -->
-	  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	  <script src="../../admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	  <!-- AdminLTE App -->
-	  <script src="../../dist/js/adminlte.min.js"></script>
+	  <script src="../../admin/dist/js/adminlte.min.js"></script>
 	  <!-- Summernote -->
-	  <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+	  <script src="../../admin/plugins/summernote/summernote-bs4.min.js"></script>
 	  <!-- CodeMirror -->
-	  <script src="../../plugins/codemirror/codemirror.js"></script>
-	  <script src="../../plugins/codemirror/mode/css/css.js"></script>
-	  <script src="../../plugins/codemirror/mode/xml/xml.js"></script>
-	  <script src="../../plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+	  <script src="../../admin/plugins/codemirror/codemirror.js"></script>
+	  <script src="../../admin/plugins/codemirror/mode/css/css.js"></script>
+	  <script src="../../admin/plugins/codemirror/mode/xml/xml.js"></script>
+	  <script src="../../admin/plugins/codemirror/mode/htmlmixed/htmlmixed.js"></script>
 	  <!-- AdminLTE for demo purposes -->
-	  <script src="../../dist/js/demo.js"></script>
+	  <script src="../../admin/dist/js/demo.js"></script>
 	  <!-- Page specific script -->
 	  <script>
 	    $(function () {

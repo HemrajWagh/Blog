@@ -12,8 +12,6 @@
 
 		@include('admin.layouts.sidebar')
 		
-		
-		
 		@section('main-content')
 
 		@show

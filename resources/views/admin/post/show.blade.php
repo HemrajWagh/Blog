@@ -1,6 +1,7 @@
 
 @extends('admin.layouts.app')
 
+
 @section('main-content')
 
 <!-- Content Wrapper. Contains page content -->

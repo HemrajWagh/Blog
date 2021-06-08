@@ -1,6 +1,11 @@
 
 @extends('admin.layouts.app')
 
+@section('headSection')
+  <link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+
+@endsection
+
 @section('main-content')
 
 <!-- Content Wrapper. Contains page content -->
@@ -28,7 +33,8 @@
      <!-- Default box -->
      <div class="card">
        <div class="card-header">
-         <h3 class="card-title">Title</h3>
+         <h3 class="card-title">Tags</h3>
+         <a class='col-lg-offset-5 btn btn-success' href="{{route('tag.create')}}">Add New</a>
 
          <div class="card-tools">
            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -40,7 +46,51 @@
          </div>
        </div>
        <div class="card-body">
-         Start creating your amazing application!
+         
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">DataTable with default features</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Sr No.</th>
+                  <th>Tag Name</th>
+                  <th>Slug</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                  @foreach ($tags as $tag)
+                    <tr>
+                      <td>{{$loop->index+ 1 }}</td>
+                      <td>{{$tag->name}}                    </td>
+                      <td>{{$tag->slug}}</td>
+                      <td>Edit</td>
+                      <td>Delete</td>
+                    </tr>    
+                  @endforeach
+                
+                
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Sr No.</th>
+                  <th>Tag Name</th>
+                  <th>Slug</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+
+
        </div>
        <!-- /.card-body -->
        <div class="card-footer">
@@ -54,5 +104,29 @@
    <!-- /.content -->
  </div>
  <!-- /.content-wrapper -->
+
+@endsection
+
+@section('footerSection')
+<script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 
 @endsection
