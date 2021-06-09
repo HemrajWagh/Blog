@@ -33,8 +33,8 @@
      <!-- Default box -->
      <div class="card">
        <div class="card-header">
-         <h3 class="card-title">Tags</h3>
-         <a class='col-lg-offset-5 btn btn-success' href="{{route('tag.create')}}">Add New</a>
+         <h3 class=" col-lg-5 card-title">Tags</h3>
+         <a class='col-lg-2 btn btn-secondary align-self-center' href="{{route('tag.create')}}">Add New</a>
 
          <div class="card-tools">
            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -67,10 +67,27 @@
                   @foreach ($tags as $tag)
                     <tr>
                       <td>{{$loop->index+ 1 }}</td>
-                      <td>{{$tag->name}}                    </td>
+                      <td>{{$tag->name}}</td>
                       <td>{{$tag->slug}}</td>
-                      <td>Edit</td>
-                      <td>Delete</td>
+
+                        <td><a href="{{route('tag.edit',$tag->id)}}"><i class="fas fa-edit"></i></a></td>
+                          
+tag                     <td>
+                          <form id="delete-form-{{$tag->id}}" action="{{route('tag.destroy',$tag->id)}}" method="post" style="display: none;">
+                            {{csrf_field()}}
+                            {{method_field('DELETE')}}
+                          </form>
+
+                          <a href="" onclick="
+                          if(confirm('Are you sure,You want to delete it?')){
+                              event.preventDefault();
+                              document.getElementById('delete-form-{{$tag->id}}').submit();
+                            }
+                            else{
+                              event.preventDefault();
+                            }" ><i class="far fa-trash-alt"></i></a>
+                        </td> 
+                        
                     </tr>    
                   @endforeach
                 
@@ -81,7 +98,7 @@
                   <th>Sr No.</th>
                   <th>Tag Name</th>
                   <th>Slug</th>
-                  <th>Edit</th>
+                  <th >Edit</th>
                   <th>Delete</th>
                 </tr>
                 </tfoot>

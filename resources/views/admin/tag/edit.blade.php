@@ -38,21 +38,22 @@
 					@endif
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form role="form" action="{{ route('tag.store')}}" method="post">
+					<form role="form" action="{{ route('tag.update',$tag->id)}}" method="post">
 						{{csrf_field()}}
+						{{method_field('PUT')}}
 						<div class="card-body">
 
 							<div class="col-lg">
 
 								<div class="form-group">
 									<label for="name">Tag Title</label>
-									<input type="text" name="name" class="form-control" id="name" placeholder="Tag Title">
+									<input type="text" name="name" class="form-control" id="name" placeholder="Tag Title"value="{{$tag->name}}">
 								</div>
 
 
 								<div class="form-group">
 									<label for="tag">Tag Slug</label>
-									<input type="text" name="slug" class="form-control" id="slug" placeholder="Slug">
+									<input type="text" name="slug" class="form-control" id="slug" placeholder="Slug"value="{{$tag->slug}}">
 								</div>
 
 							</div>

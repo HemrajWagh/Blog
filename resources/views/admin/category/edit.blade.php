@@ -39,21 +39,22 @@
 	        	  @endif
 	        	  <!-- /.card-header -->
 	        	  <!-- form start -->
-	        	  <form action="{{route('category.store')}}" method="post">
+	        	  <form action="{{route('category.update',$category->id)}}" method="post">
 	        	  	{{csrf_field()}}
+	        	  	{{method_field('PUT')}}
 	        	    <div class="card-body">
 
 	        	    	<div class="col-lg">
 	        	    			
 		        	      <div class="form-group">
 		        	        <label for="name">Category Title</label>
-		        	        <input type="text" name="name" class="form-control" id="name" placeholder="Category Title">
+		        	        <input type="text" name="name" class="form-control" id="name" placeholder="Category Title"value="{{$category->name}}">
 		        	      </div>
 
 		        	      
 		        	        <div class="form-group">
 		        	          <label for="Category">Category Slug</label>
-		        	          <input type="text" name="Category" class="form-control" id="slug" placeholder="Slug">
+		        	          <input type="text" name="Category" class="form-control" id="slug" placeholder="Slug" value="{{$category->slug}}">
 		        	        </div>
 		        	   
 	        	    	</div>
