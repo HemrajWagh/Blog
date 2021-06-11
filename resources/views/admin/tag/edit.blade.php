@@ -33,7 +33,7 @@
 					</div><br>
 					@if(count($errors)>0)
 					@foreach($errors->all() as $error)
-						<a class="alert alert-danger">{{$error}}</a>
+					<a class="alert alert-danger">{{$error}}</a>
 					@endforeach
 					@endif
 					<!-- /.card-header -->
@@ -56,6 +56,22 @@
 									<input type="text" name="slug" class="form-control" id="slug" placeholder="Slug"value="{{$tag->slug}}">
 								</div>
 
+							</div>
+							<div class="row">
+							  <div class="col-md-12">
+							    <div class="form-group">
+							      <label>Select Tags</label>
+							      <select class="select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;"   aria-hidden="true" name="tags[]">
+							        @foreach ($tags as $tag)
+							        <option value="{{$tag->id}}">{{$tag->name}}</option>
+							        
+							        @endforeach
+							        
+							      </select>
+							    </div>
+							  </div>
+							  
+							  
 							</div>
 
 

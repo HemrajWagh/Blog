@@ -24,10 +24,15 @@
   <link rel="stylesheet" href="{{asset('admin/plugins/daterangepicker/daterangepicker.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('admin/plugins/summernote/summernote-bs4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/plugins/codemirror/codemirror.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/plugins/codemirror/theme/monokai.css')}}">
+  <!-- SimpleMDE -->
+  <link rel="stylesheet" href="{{asset('admin/plugins/simplemde/simplemde.css')}}">
+
 
 
 @section('headSection')
-
+<link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
 @show
 
 
@@ -89,13 +94,11 @@
       // Summernote
       $('#summernote').summernote()
 
-      // CodeMirror
-      CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-        mode: "htmlmixed",
-        theme: "monokai"
+    
       });
-    })
   </script>
+
+  
 
 
   

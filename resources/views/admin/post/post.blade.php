@@ -1,5 +1,7 @@
 @extends('admin.layouts.app')
-
+@section('headSection')
+<link rel="stylesheet" type="text/css" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
+@endsection
 
 @section('main-content')
 
@@ -66,7 +68,7 @@
 
 							</div>
 
-							<div class="col-lg-6">
+							<div class="col-lg">
 
 								<div class="form-group">
 									<label for="image">File input</label>
@@ -81,6 +83,34 @@
 									</div>
 								</div>
 
+							<div class="row">
+								<div class="col-md-6">
+							        <div class="form-group">
+							              <label>Select Tags</label>
+							              <select class="select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;"   aria-hidden="true" name="tags[]">
+							              	@foreach ($tags as $tag)
+							                  <option value="{{$tag->id}}">{{$tag->name}}</option>
+							              		
+							              	@endforeach
+							                  
+							              </select>
+							        </div>
+							    </div>
+							    
+							    <div class="col-md-6">
+							        <div class="form-group">
+							              <label>Select Category</label>
+							              <select class="select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;"   aria-hidden="true" name="categories[]">
+							              	@foreach ($categories as $category)
+							                  <option value="{{$category->id}}">{{$category->name}}</option>
+							              		
+							              	@endforeach
+							                  
+							              </select>
+							        </div>
+							    </div>
+							</div>	
+
 
 							</div>
 							<!-- /.card-body -->  	   
@@ -94,14 +124,14 @@
 								<!-- /.card-header -->
 								<div class="card-body">
 									<textarea id="summernote" name="body">
-										Place <em>some</em> <u>text</u> <strong>here</strong>
+											<u>text</u> <strong>here</strong>
 									</textarea>
 								</div>
 
 							</div>
 
 							<div class="form-check">
-								<input type="checkbox" name="status" class="form-check-input" id="exampleCheck1">
+								<input type="checkbox" name="status" class="form-check-input" id="exampleCheck1"value="1">
 								<label class="form-check-label" for="exampleCheck1">Publish</label>
 							</div>
 
@@ -135,11 +165,18 @@
 </div>
 <!-- /.content-wrapper -->	  
 
-
-
-
-
-
+@section('footerSection') 
+<script type="text/javascript" src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
+<script>
+$(document).ready(function(){
+//Initialize Select2 Elements
+  $('.select2').select2();
+});
+ //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+</script> 
 
 
 @endsection
