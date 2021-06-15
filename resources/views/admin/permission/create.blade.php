@@ -29,55 +29,27 @@
 				<!-- general form elements -->
 				<div class="card card-primary">
 					<div class="card-header">
-						<h3 class="card-title">Add Admin</h3>
+					<h3 class="card-title">Permission</h3>
 					</div><br>
 					@if(count($errors)>0)
 					@foreach($errors->all() as $error)
-					<a class="alert alert-danger">{{$error}}</a>
+						<a class="alert alert-danger">{{$error}}</a>
 					@endforeach
 					@endif
 					<!-- /.card-header -->
 					<!-- form start -->
-					<form role="form" action="{{ route('user.store')}}" method="post">
+					<form role="form" action="{{ route('permission.store')}}" method="post">
 						{{csrf_field()}}
 						<div class="card-body">
 
 							<div class="col-lg">
 
 								<div class="form-group">
-									<label for="name">User Name</label>
-									<input type="text" name="name" class="form-control" id="name" placeholder="Username">
+									<label for="name">Permission</label>
+									<input type="text" name="name" class="form-control" id="name" placeholder="Permission">
 								</div>
 
 
-								<div class="form-group">
-									<label for="email">Email</label>
-									<input type="text" name="Email" class="form-control" id="Email" placeholder="Email">
-								</div>
-
-								<div class="form-group">
-									<label for="password">Password</label>
-									<input type="password" name="password" class="form-control" id="password" placeholder="Password">
-								</div>
-
-								<div class="form-group">
-									<label for="confirm_password">Confirm Password</label>
-									<input type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="Confirm Password">
-								</div><br>
-								
-								<div class="form-group">
-									<label>Assign Role</label>
-									<div class="row">
-										@foreach($roles as $role)
-										<div class="col-lg-3">
-											<div class="checkbox">
-												<input type="checkbox"name="role[]"value="{{ $role->id}}" >{{ $role->name}}
-											</div>
-										</div>	
-										@endforeach
-									</div>
-									
-								</div>
 							</div>
 
 
@@ -87,7 +59,7 @@
 
 						<div class="card-footer">
 							<button type="submit" class="btn btn-primary">Submit</button>
-							<a href="{{route('user.index')}}" class="btn btn-warning">Back</a>
+							<a href="{{route('permission.index')}}" class="btn btn-warning">Back</a>
 						</div>
 
 					</form>

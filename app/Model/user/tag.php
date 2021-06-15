@@ -10,5 +10,9 @@ class tag extends Model
     {
         return $this->belongsToMany('App\Model\user\post','post_tags'); 
     }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
     
 }
