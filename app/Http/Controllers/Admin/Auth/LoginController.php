@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\admin\Auth;
+use App\Http\Controllers\Controller;
+use App\Model\admin\admin;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -47,6 +48,31 @@ class LoginController extends Controller
         }
 
         return $this->sendFailedLoginResponse($request);
+    }
+
+    /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        // dd($request->email);
+        $admin=admin::where('email',$request->email)->first();
+        // $a=admin::;
+        if (count((is_countable($admin)?$admin:[]))) {
+
+            if($admin->status==0 )
+            {
+                return['email'=>'inactive','password'=>'You are not an active person,Please contact Admin'];
+            } else{
+
+                return ['email'=>$request->email,'password'=>$request->password,'status'=>1];   
+            }    
+        }
+ 
+        return $request->only($this->username(), 'password');
     }
 
     public function __construct()

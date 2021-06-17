@@ -12,6 +12,7 @@
        <div class="row mb-2">
          <div class="col-sm-6">
            <h1>Blank Page</h1>
+           
          </div>
          <div class="col-sm-6">
            <ol class="breadcrumb float-sm-right">
@@ -34,7 +35,10 @@
            <div class="card">
              <div class="card-header">
                <h3 class=" col-lg-5 card-title">Posts</h3>
-               <a class='col-lg-2 btn btn-secondary align-self-center' href="{{route('post.create')}}">Add New</a>
+               @can('posts.create',Auth::user())
+                  <a class='col-lg-2 btn btn-secondary align-self-center' href="{{route('post.create')}}">Add New</a>
+               @endcan
+               
 
                <div class="card-tools">
                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -61,9 +65,12 @@
                         <th>Sub Title</th>
                         <th>Slug</th>
                         <th>Created_At</th>
-        
+                         @can('post.update',Auth::user())
                         <th>Edit</th>
+                        @endcan
+                        @can('post.update',Auth::user())
                         <th>Delete</th>
+                        @endcan
                       </tr>
                       </thead>
                       <tbody>
@@ -74,9 +81,13 @@
                             <td>{{$post->subtitle}}</td>
                             <td>{{$post->slug}}</td>
                             <td>{{$post->created_at}}</td>
+                            @can('post.update',Auth::user())
 
                             <td><a href="{{route('post.edit',$post->id)}}"><i class="fas fa-edit"></i></a></td>
-                              
+                            
+                            @endcan
+
+                            @can('post.update',Auth::user())
 
                             <td>
                               <form id="delete-form-{{$post->id}}" action="{{route('post.destroy',$post->id)}}" method="post" style="display: none;">
@@ -92,7 +103,10 @@
                                 else{
                                   event.preventDefault();
                                 }" ><i class="far fa-trash-alt"></i></a>
-                            </td> 
+                            </td>
+                            @endcan  
+
+                             
      
                             
                           </tr>    
@@ -107,9 +121,12 @@
                         <th>Sub Title</th>
                         <th>Slug</th>
                         <th>Created_At</th>
-        
+                        @can('post.update',Auth::user())
                         <th>Edit</th>
+                        @endcan
+                        @can('post.update',Auth::user())
                         <th>Delete</th>
+                        @endcan
                       </tr>
                       </tfoot>
                     </table>

@@ -9,7 +9,7 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Text Editors</h1>
+					@include('admin.layouts.pageHead')
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -46,24 +46,36 @@
 
 								<div class="form-group">
 									<label for="name">User Name</label>
-									<input type="text" name="name" class="form-control" id="name" placeholder="Username">
+									<input type="text" name="name" class="form-control" id="name" placeholder="Username" value="{{old('name')}}">
 								</div>
 
 
 								<div class="form-group">
 									<label for="email">Email</label>
-									<input type="text" name="Email" class="form-control" id="Email" placeholder="Email">
+									<input type="text" name="email" class="form-control" id="Email" placeholder="Email"value="{{old('email')}}">
+								</div>
+
+								<div class="form-group">
+									<label for="phone">Phone</label>
+									<input type="text" name="phone" class="form-control" id="phonephone" placeholder="Phone" value="{{old('phone')}}">
 								</div>
 
 								<div class="form-group">
 									<label for="password">Password</label>
-									<input type="password" name="password" class="form-control" id="password" placeholder="Password">
+									<input type="password" name="password" class="form-control" id="password" placeholder="Password"value="{{old('password')}}">
 								</div>
 
 								<div class="form-group">
 									<label for="confirm_password">Confirm Password</label>
-									<input type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="Confirm Password">
-								</div><br>
+									<input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Confirm Password"value="{{old('password_confirmation')}}">
+								</div>
+								<div class="form-group">
+									<label for="">Status</label>
+									<div class="checkbox">
+									<label><input type="checkbox"name="status"value="1">Status</label>
+									</div>
+								</div>
+								<br>
 								
 								<div class="form-group">
 									<label>Assign Role</label>

@@ -15,7 +15,7 @@
      <div class="container-fluid">
        <div class="row mb-2">
          <div class="col-sm-6">
-           <h1>Blank Page</h1>
+           @include('admin.layouts.pageHead')
          </div>
          <div class="col-sm-6">
            <ol class="breadcrumb float-sm-right">
@@ -58,6 +58,8 @@
                 <tr>
                   <th>Sr No.</th>
                   <th>User Name</th>
+                  <th>Assigned Roles</th>
+                  <th>Status</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
@@ -67,12 +69,16 @@
                     <tr>
                       <td>{{$loop->index+ 1 }}</td>
                       <td>{{$user->name}}</td>
-                     
+                      <td>
+                        @foreach($user->roles as $role)
+                          {{$role->name}},
+                        @endforeach
+                      </td>
+                      <td>{{$user->status?'Active':'Not Active'}}</td>
 
                         <td><a href="{{route('user.edit',$user->id)}}"><i class="fas fa-edit"></i></a></td>
-                          
-user                     <td>
-                          <form id="delete-form-{{$user->id}}" action="{{route('tag.destroy',$user->id)}}" method="post" style="display: none;">
+                       <td>
+                          <form id="delete-form-{{$user->id}}" action="{{route('user.destroy',$user->id)}}" method="post" style="display: none;">
                             {{csrf_field()}}
                             {{method_field('DELETE')}}
                           </form>
@@ -96,6 +102,8 @@ user                     <td>
                 <tr>
                   <th>Sr No.</th>
                   <th>User Name</th>
+                  <th>Assigned Roles</th>
+                  <th>Status</th>
                   <th >Edit</th>
                   <th>Delete</th>
                 </tr>

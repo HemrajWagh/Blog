@@ -3,11 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\admin\Permission;
 use App\Model\admin\role;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +37,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.role.create');
+        $permissions=Permission::all();    
+        return view('admin.role.create',compact('permissions'));
     }
 
     /**
@@ -43,6 +55,7 @@ class RoleController extends Controller
         $role= new role;
         $role->name=$request->name;
         $role->save();
+        $role->permissions()->sync($request->permissions);
         return redirect(route('role.index'));
     }
 
@@ -66,7 +79,8 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role=role::find($id);
-        return view('admin.role.edit',compact('role'));
+        $permissions=Permission::all(); 
+        return view('admin.role.edit',compact('role','permissions'));
     }
 
     /**
@@ -78,13 +92,15 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $this->validate($request,[
             'name' => 'required|max:50',
         ]);
 
         $role=role::find($id);
-        $role->name= $request->name;
+        $role->name=$request->name;
         $role->save();
+        $role->permissions()->sync($request->permissions);
         return redirect(route('role.index'));
     }
 

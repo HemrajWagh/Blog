@@ -7,12 +7,6 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
-    public function index(){
-        return view('admin.home');
-    }
-
-
-    
     /**
      * Create a new controller instance.
      *
@@ -22,4 +16,10 @@ class HomeController extends Controller
     {
         $this->middleware('auth:admin');
     }
+
+    public function index(){
+        return view('admin.home');
+    }
+
+
 }

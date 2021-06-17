@@ -11,7 +11,7 @@
 	<div class="wrapper">
 
 		@include('admin.layouts.sidebar')
-		
+		@include('admin.layouts.header')
 		@section('main-content')
 
 		@show

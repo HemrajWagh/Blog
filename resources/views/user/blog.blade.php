@@ -9,14 +9,21 @@
 
 @section('subheading','Learn Together And Grow Togather')
 
+@section('head')
+	<style>
+		.fa-thumbs-up:hover{
+			color: red;
+		}	
+	</style>
+@endsection
+
 	@section('main-content')
 
 		<!-- Main Content-->
 		<div class="container px-4 px-lg-5">
-		    <div class="row gx-4 gx-lg-5 justify-content-center">
+		    <div class="row gx-4 gx-lg-5 justify-content-center" id="app">
 		        <div class="col-md-10 col-lg-8 col-xl-7">
 		            @foreach ($posts as $post)
-		            	
 		            <!-- Post preview-->
 		            <div class="post-preview">
 		                <a href="{{route('post',$post->slug)}}">
@@ -27,6 +34,12 @@
 		                    Posted by
 		                    <a href="#!">Start Bootstrap</a>
 		                    {{$post->created_at->diffForHumans()}}
+		                    
+		                    <a href="">
+		                    	<small>0</small>
+		                    	<i class="fas fa-thumbs-up"></i>
+		                    </a>
+		                    
 		                </p>
 		            </div>
 		            @endforeach

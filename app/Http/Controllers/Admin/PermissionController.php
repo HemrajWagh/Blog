@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 class PermissionController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }/**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -38,9 +46,11 @@ class PermissionController extends Controller
     {
         $this->validate($request,[
             'name'=>'required|max:50|unique:permissions',
+            'for'=>'required',
         ]);
         $permissions= new Permission;
         $permissions->name=$request->name;
+        $permissions->for=$request->for;
         $permissions->save();
         return redirect(route('permission.index'));
     }
@@ -78,13 +88,15 @@ class PermissionController extends Controller
     public function update(Request $request, Permission $permission)
     {
         $this->validate($request,[
-                    'name'=>'required|max:50|unique:permissions',
-                ]);
+            'name'=>'required|max:50|unique:permissions',
+            'for'=>'required',
+             ]);
 
-                $permissions=Permission::find($permission->id);
-                $permissions->name=$request->name;
-                $permissions->save();
-                return redirect(route('permission.index'))->with('message','Permission updated succssfully..');
+            $permissions=Permission::find($permission->id);
+            $permissions->name=$request->name;
+            $permissions->for=$request->for;
+            $permissions->save();
+            return redirect(route('permission.index'))->with('message','Permission updated succssfully..');       
     }
 
     /**
